@@ -30,7 +30,7 @@ RUN apt-get update \
  && gem install oj -v 3.3.10 \
  && gem install json -v 2.1.0 \
  && gem install fluentd -v 1.1.2 \
- && gem install fluent-plugin-azureoms -v 0.1.0 \
+ && gem install fluent-plugin-azureoms -v 0.2.0 \
  && gem install fluent-plugin-kubernetes_metadata_filter \
  && gem install fluent-plugin-prometheus \
  && gem install fluent-plugin-systemd -v 0.3.1 \

@@ -16,4 +16,5 @@ export HOME=/home/fluent
 chown -R fluent /home/fluent
 chown -R fluent /fluentd
 
-exec gosu fluent "$@"
+# Docker logs require fluent running as root
+exec gosu root "$@"

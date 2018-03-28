@@ -28,6 +28,9 @@ fi
 echo -n $OMS_WORKSPACE > ./OMS_WORKSPACE
 echo -n $OMS_KEY > ./OMS_KEY
 
+kubectl delete secret fluentd-oms-secret \
+    --namespace monitoring
+
 kubectl create secret generic fluentd-oms-secret \
     --namespace monitoring \
     --from-file=./OMS_WORKSPACE \
