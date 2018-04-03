@@ -27,9 +27,28 @@ spec:
         - --source=kubernetes:https://kubernetes.default.svc
         - --sink=influxdb:http://127.0.0.1:8086
       containers:
-      - name: heapster
-        image: mabsimms/telegraf-loganalytics-amd64:latest
-        imagePullPolicy: IfNotPresent        
+      - name: telegraf
+        image: mabsimms/telegraf-1.5.3-azmon:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: OMS_WORKSPACE
+          valueFrom:
+            secretKeyRef:
+              name: telegraf-secret
+              key: OMS_WORKSPACE
+        - name: OMS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: telegraf-secret
+              key: OMS_KEY              
+        #volumeMounts:
+        #- name: telegraf-config-volume
+          #mountPath: /etc/telegraf/
+      volumes:
+      - name: telegraf-config-volume
+        configMap:
+          name: telegraf-config   
+        
 ---
 apiVersion: v1
 kind: Service
